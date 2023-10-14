@@ -2,12 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    .gradient-text {
-        @apply text-transparent bg-clip-text bg-gradient-to-r from-[#4568DC]  via-[#B06AB3] to-[#4E4376];
-    }
+.header-background {
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
-.header-background {
-    background-color: rgba(0, 0, 0, 0.7); /* Adjust the opacity as needed */
+.bgtext {
+  font-size: 2.5rem;
+  line-height: 3.2rem;
+  font-weight: 800;
+}
+
+@media (max-width: 768px) {
+  .bgtext  {
+    font-size: 2rem;
+    line-height: 2.5rem;
+    font-weight: 800;
+  }
+}
+
+@media (max-width: 480px) {
+  .bgtext {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+  }
 }
