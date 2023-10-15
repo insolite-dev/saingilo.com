@@ -1,4 +1,3 @@
-import Bg from "@/components/bg"
 import Head from "next/head"
 
 export default function Home() {
@@ -15,20 +14,6 @@ export default function Home() {
                 <link rel="icon" href="/logovazi.svg" />
             </Head>
 
-            <div className="relative h-screen">
-                <Bg />
-                <div className="absolute left-8 bottom-10 text-white">
-                    <p className="bgtext">
-                        ჩვენ ვართ ეროვნების <br />
-                        დავიწყების კარზე მიმდგარი <br />
-                        ქართველები! <br />
-                        და ეს ჩვენი ვებ გვერდია, <br />
-                        სადაც ვცდილობთ <br />
-                        რაც შეგვინარჩუნეს <br />
-                        გავაგრძელოთ ... <br />
-                    </p>
-                </div>
-            </div>
         </>
     )
 }

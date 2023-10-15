@@ -15,7 +15,7 @@ interface INavigationProps {
 
 const navigation: INavigationProps[] = [
     { name: "მთავარი", href: "/", current: true },
-    { name: "კონტაკტი", href: "/contact", current: false },
+    { name: "კონტაქტი", href: "/contact", current: false },
     { name: "სიახლეები", href: "/news" },
 ]
 

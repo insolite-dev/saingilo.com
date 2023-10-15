@@ -4,7 +4,7 @@ const contact = () => {
     return (
         <>
             <Head>
-                <title>საინგილო | კონტაკტი</title>
+                <title>საინგილო | კონტაქტი</title>
                 <meta
                     name="description"
                     content="დამოუკიდებელი საინფორმაციო ვებ გვერდი ისტორიულ ჰერეთზე/საინგილოზე"
