@@ -11,7 +11,7 @@ const navigation = [
 
 const Footer = () => {
     return (
-        <div className="bg-[#111111] flex flex-col sm:flex-rov items-center space-y-2 justify-start mx-6 py-2">
+        <div className="bg-[#111111] flex flex-col sm:flex-row items-center space-y-2 justify-start mx-6 py-2">
             <div className="flex flex-col sm:flex-row flex-shrink-0 items-center">
                 <div style={{ paddingBottom: "15px" }}>
                     <Image

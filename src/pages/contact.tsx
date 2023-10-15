@@ -7,7 +7,7 @@ const Contact = () => {
                 <title>კონტაქტი | საინგილო</title>
                 <meta
                     name="description"
-                    content="დამოუკიდებელი საინფორმაციო ვებ გვერდი ისტორიულ ჰერეთზე/საინგილოზე"
+                    content="საინგილოს დამოუკიდებელი საინფორმაციო ვებ გვერდი"
                 />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta property="og:image" content="/saingilo_preview.png" />
