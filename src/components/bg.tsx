@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { doc, collection, getDoc } from "firebase/firestore";
 import { db } from "../api/firebase";
 
@@ -21,8 +20,6 @@ export default function Bg() {
                     const bgs = docSnapshot.data().bgs;
                     if (bgs && bgs.length > 0) {
                         const randomIndex = Math.floor(Math.random() * bgs.length);
-                        console.log("RANDOM INDEX IS: ", randomIndex);
-                        console.log("BGS", bgs);
                         const randomBg = bgs[randomIndex];
                         setBgSrc(randomBg);
                     } else {
@@ -42,13 +39,15 @@ export default function Bg() {
     return (
         <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}>
             {bgSrc && (
-                <Image
-                    priority
+                <img
                     src={bgSrc}
-                    alt="ქურმუხი, ქართული ეკლესია აზ. რ. კახის რაიონში"
-                    layout="fill"
-                    objectFit="cover"
-                    objectPosition="top"
+                    alt="Random Background Image"
+                    style={{
+                        objectFit: "cover",
+                        objectPosition: "top",
+                        width: "100%",
+                        height: "100%",
+                    }}
                 />
             )}
         </div>
