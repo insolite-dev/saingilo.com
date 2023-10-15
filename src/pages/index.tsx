@@ -4,7 +4,7 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>საინგილო | მთავარი</title>
+                <title>მთავარი | საინგილო</title>
                 <meta
                     name="description"
                     content="დამოუკიდებელი საინფორმაციო ვებ გვერდი ისტორიულ ჰერეთზე/საინგილოზე"
@@ -13,7 +13,6 @@ export default function Home() {
                 <meta property="og:image" content="/saingilo_preview.png" />
                 <link rel="icon" href="/logovazi.svg" />
             </Head>
-
         </>
     )
 }

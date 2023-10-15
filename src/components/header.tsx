@@ -48,7 +48,7 @@ export default function Header() {
     if (!mounted) return null
 
     return (
-        <Disclosure as="nav" className="bg-black header-background">
+        <Disclosure as="nav">
             {({ open }) => (
                 <>
                     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

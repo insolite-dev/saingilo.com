@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.header-background {
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
 .bgtext {
   font-size: 2.5rem;
   line-height: 3.2rem;
@@ -26,4 +22,10 @@
     line-height: 2rem;
     font-weight: 600;
   }
+}
+
+.pg {
+    min-height: calc(100vh - 80px);
+    padding-bottom: 80px;
+    overflow: auto;
 }

@@ -11,15 +11,17 @@ const navigation = [
 
 const Footer = () => {
     return (
-        <div className="bg-[#111111] flex flex-col sm:flex-row items-center space-y-2 justify-start mx-6 py-2">
+        <div className="bg-[#111111] flex flex-col sm:flex-rov items-center space-y-2 justify-start mx-6 py-2">
             <div className="flex flex-col sm:flex-row flex-shrink-0 items-center">
-                <Image
-                    priority
-                    src={Logo}
-                    alt="saingilo.com"
-                    height={60}
-                    className="block h-8 w-auto lg:hidden"
-                />
+                <div style={{ paddingBottom: "15px" }}>
+                    <Image
+                        priority
+                        src={Logo}
+                        alt="saingilo.com"
+                        height={60}
+                        className="block h-8 w-auto lg:hidden"
+                    />
+                </div>
                 <Image
                     priority
                     src={Logo}
