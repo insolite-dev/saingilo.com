@@ -5,7 +5,7 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>საინგილო</title>
+                <title>საინგილო | მთავარი</title>
                 <meta
                     name="description"
                     content="დამოუკიდებელი საინფორმაციო ვებ გვერდი ისტორიულ ჰერეთზე/საინგილოზე"
