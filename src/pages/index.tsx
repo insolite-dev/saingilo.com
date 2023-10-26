@@ -1,3 +1,4 @@
+import ContentArrayComponent from "@/components/content_array"
 import Head from "next/head"
 
 export default function Home() {
@@ -13,6 +14,8 @@ export default function Home() {
                 <meta property="og:image" content="/saingilo_preview.png" />
                 <link rel="icon" href="/logovazi.svg" />
             </Head>
+
+            <ContentArrayComponent />
         </>
     )
 }

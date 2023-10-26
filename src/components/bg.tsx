@@ -8,7 +8,7 @@ export default function Bg() {
     const defaultImage = "https://firebasestorage.googleapis.com/v0/b/saingilo-com.appspot.com/o/bg1.png?alt=media&token=07dcf4e7-9b28-4b04-a6a5-2cccc7afc48d";
     useEffect(() => {
         const mainCol = collection(db, 'main');
-        const initialDocRef = doc(mainCol, 'initial');
+        const initialDocRef = doc(mainCol, 'content');
 
         const fetchData = async () => {
             try {
