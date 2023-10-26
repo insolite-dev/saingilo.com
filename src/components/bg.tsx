@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { doc, collection, getDoc } from "firebase/firestore";
 import { db } from "../api/firebase";
+import Image from 'next/image';
 
 export default function Bg() {
     const [bgSrc, setBgSrc] = useState('');
@@ -39,15 +40,12 @@ export default function Bg() {
     return (
         <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}>
             {bgSrc && (
-                <img
+                <Image
                     src={bgSrc}
                     alt="Random Background Image"
-                    style={{
-                        objectFit: "cover",
-                        objectPosition: "top",
-                        width: "100%",
-                        height: "100%",
-                    }}
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="top"
                 />
             )}
         </div>

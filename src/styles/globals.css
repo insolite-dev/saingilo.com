@@ -58,12 +58,6 @@
         padding-left: 2.5rem;
         padding-right: 2.5rem;
     }
-
-    .second-obj img {
-        height: 80%;
-        border-radius: 1rem;
-        box-shadow: 0 8px 10px rgba(155, 172, 181, 0.5);
-    }
 }
 
 .spacerBottom {
