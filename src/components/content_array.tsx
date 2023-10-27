@@ -25,24 +25,22 @@ export default function ContentArrayComponent() {
 
         return data.data.map((item, index) => {
             const isEven = (index + 1) % 2 === 0;
-            const alignImageRight = isEven ? true : false;
-
             return (
-                <div>
+                <div key={index}>
                     <div
-                        key={index} className={`content-array ${alignImageRight ? 'flex-row-reverse' : 'flex-row'}`}>
-                        <div className={"first-obj"} dangerouslySetInnerHTML={{ __html: item?.content || '' }} />
+                        className={`content-array ${isEven ? 'flex-row-reverse' : 'flex-row'}`}>
+                        <div className={"content-array-item-content"} dangerouslySetInnerHTML={{ __html: item?.content || '' }} />
                         {item.image && (
-                            <div className={`second-obj`}>
+                            <div className={"content-array-item-image"}>
                                 <Image
                                     src={item.image}
                                     alt={item.content}
                                     width={100}
-                                    height={80}
+                                    height={100}
                                     layout="responsive"
                                     objectFit="cover"
                                     style={{
-                                        borderRadius: '1rem',
+                                        borderRadius: '0.5rem',
                                         boxShadow: '0 8px 10px rgba(155, 172, 181, 0.5)',
                                     }}
                                 />
