@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { ChangeEventHandler, useEffect, useState } from "react"
 import Image from "next/image"
 import { Disclosure, Transition } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
@@ -6,18 +6,14 @@ import Logo from "../../public/saingilo_logo.svg"
 import { Fragment } from "react"
 import { useRouter } from "next/router"
 import Link from "next/link"
+import getLocale from "../lib/locale"
+import LanguageChange from "./language_select"
 
 interface INavigationProps {
     name: string
     href: string
     current?: boolean
 }
-
-const navigation: INavigationProps[] = [
-    { name: "მთავარი", href: "/", current: true },
-    { name: "კონტაქტი", href: "/contact", current: false },
-    { name: "სიახლეები", href: "/news" },
-]
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ")
@@ -28,9 +24,15 @@ export default function Header() {
 
     const router = useRouter()
 
-    const { pathname } = useRouter()
-    const clearSlash = pathname.split("/")[1]
-    const pathName = clearSlash ? `/${clearSlash}` : "/"
+    const locale = getLocale(router.locale)
+
+    const navigation: INavigationProps[] = [
+        { name: locale.navbar_main, href: `/${router.locale}`, current: true },
+        { name: locale.navbar_contact, href: `/${router.locale}/contact`, current: false },
+        { name: locale.navbar_news, href: `/${router.locale}/news`, current: false },
+    ]
+
+    const pathName = `/${router.locale}${router.pathname}`.replace(/\/$/, '');
 
     useEffect(() => {
         const handleRouteChangeStart = () => {
@@ -41,8 +43,12 @@ export default function Header() {
         return () => {
             router.events.off("routeChangeStart", handleRouteChangeStart)
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    const changeLanguage: ChangeEventHandler = (e: any) => {
+        const locale = e.target.value;
+        router.push(router.route, router.asPath, { locale })
+    }
 
     useEffect(() => setMounted(true), [])
     if (!mounted) return null
@@ -108,6 +114,7 @@ export default function Header() {
                                                 </a>
                                             )
                                         })}
+                                        <LanguageChange defaultLocale={router.locale} changeLanguage={changeLanguage} />
                                     </div>
                                 </div>
                             </div>
@@ -143,6 +150,7 @@ export default function Header() {
                                             </Disclosure.Button>
                                         )
                                     })}
+                                    <LanguageChange defaultLocale={router.locale} changeLanguage={changeLanguage} />
                                 </div>
                             </Disclosure.Panel>
                         </Transition>
