@@ -9,8 +9,9 @@ export default function App({ Component, pageProps }: AppProps) {
     const router = useRouter();
 
     return (
-        <>
-            <div>
+        <div className="fixedbody">
+            <div className="scroll">
+
                 {router.pathname === "/" &&
                     <div className="relative h-screen">
                         <Bg />
@@ -47,6 +48,6 @@ export default function App({ Component, pageProps }: AppProps) {
                     <Footer />
                 </footer>
             </div>
-        </>
+        </div>
     )
 }
