@@ -133,3 +133,9 @@
     margin-left: 35%;
     border-bottom: 5px dotted rgba(0, 0, 0, .1);
 }
+
+.language-icon {
+    color: #fff;
+    font-size: 18px;
+    padding-top: 5px;
+}

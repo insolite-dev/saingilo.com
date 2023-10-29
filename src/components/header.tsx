@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import { Disclosure, Transition } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
@@ -45,10 +45,9 @@ export default function Header() {
         }
     }, [])
 
-    const changeLanguage: ChangeEventHandler = (e: any) => {
-        const locale = e.target.value;
-        router.push(router.route, router.asPath, { locale })
-    }
+    const changeLanguage = (locale: string) => {
+        router.push(router.route, router.asPath, { locale });
+    };
 
     useEffect(() => setMounted(true), [])
     if (!mounted) return null
@@ -114,7 +113,7 @@ export default function Header() {
                                                 </a>
                                             )
                                         })}
-                                        <LanguageChange defaultLocale={router.locale} changeLanguage={changeLanguage} />
+                                        <LanguageChange changeLanguage={changeLanguage} />
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +149,7 @@ export default function Header() {
                                             </Disclosure.Button>
                                         )
                                     })}
-                                    <LanguageChange defaultLocale={router.locale} changeLanguage={changeLanguage} />
+                                    <LanguageChange changeLanguage={changeLanguage} />
                                 </div>
                             </Disclosure.Panel>
                         </Transition>
