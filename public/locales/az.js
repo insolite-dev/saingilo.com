@@ -3,4 +3,5 @@ export default {
     navbar_contact: "Əlaqə",
     navbar_news: "Xəbərlər",
     navbar_language: "Dil",
+    no_news_found: "Xəbər tapılmadı",
 }
