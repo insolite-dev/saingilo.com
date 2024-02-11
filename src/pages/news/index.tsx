@@ -17,6 +17,11 @@ import EmptyCard from "@/components/empty_card";
 
 const ITEMS_PER_PAGE = 10;
 
+/*
+    @param {number} page - The page number to fetch
+    @returns {Promise<NewsItem[]>} - An array of news items
+    @description Fetches news items from the database
+*/
 export const fetchNews = async (page: number) => {
   const newsRef = collection(db, "news");
   const orderQuery = orderBy("created_at", "desc");
