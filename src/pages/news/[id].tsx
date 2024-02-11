@@ -1,11 +1,13 @@
-import { db } from '@/api/firebase';
+import Head from 'next/head';
+import { GetServerSidePropsContext } from 'next';
+import { useRouter } from 'next/router';
 import { DocumentReference, collection, doc } from "firebase/firestore";
+
+import { db } from '@/api/firebase';
 import { getData } from '@/lib/fetcher';
 import { NewsItem } from '@/lib/types';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
 
-export const getServerSideProps = async (context: any) => {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
     const id = context.params?.id as string;
     const mainCol = collection(db, 'news');
     const docRef = doc(mainCol, id);
@@ -14,6 +16,11 @@ export const getServerSideProps = async (context: any) => {
     return { props: { newsItem } };
 };
 
+/*
+  * This function is used to parse the timestamp to a date string.
+  * @param timestamp - The timestamp to be parsed.
+  * @returns - The date string.
+*/
 function parseTimestampToDateString(timestamp: string): string {
     const date = new Date(timestamp);
     const day = date.getDate().toString().padStart(2, '0');
