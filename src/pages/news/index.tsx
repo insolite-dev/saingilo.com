@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { DocumentData, QueryDocumentSnapshot, collection, getDocs, limit, orderBy, query, startAfter } from "firebase/firestore";
 import Link from "next/link";
 
-const news = () => {
+const News = () => {
     const [data, setData] = useState<NewsItem[]>([]);
     const [lastVisible, setLastVisible] = useState<QueryDocumentSnapshot<DocumentData> | null>(null);
     const [loading, setLoading] = useState(false);
@@ -28,18 +28,18 @@ const news = () => {
         fetchNews();
     }, []);
 
-    const fetchMoreNews = async () => {
-        if (!lastVisible) return;
+    // const fetchMoreNews = async () => {
+    //     if (!lastVisible) return;
 
-        setLoading(true);
-        const newsRef = collection(db, 'news');
-        const q = query(newsRef, orderBy('created_at', 'desc'), startAfter(lastVisible), limit(10));
-        const querySnapshot = await getDocs(q);
-        const newNewsItems = querySnapshot.docs.map(doc => doc.data() as NewsItem);
-        setData(prev => [...prev, ...newNewsItems]);
-        setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
-        setLoading(false);
-    };
+    //     setLoading(true);
+    //     const newsRef = collection(db, 'news');
+    //     const q = query(newsRef, orderBy('created_at', 'desc'), startAfter(lastVisible), limit(10));
+    //     const querySnapshot = await getDocs(q);
+    //     const newNewsItems = querySnapshot.docs.map(doc => doc.data() as NewsItem);
+    //     setData(prev => [...prev, ...newNewsItems]);
+    //     setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+    //     setLoading(false);
+    // };
 
 
     // TODO: make transparent the container bg to black
@@ -87,4 +87,4 @@ const news = () => {
     )
 }
 
-export default news
+export default News
