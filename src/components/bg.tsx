@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { doc, collection } from "firebase/firestore";
+import { doc, collection, DocumentReference } from "firebase/firestore";
 import { db } from "../api/firebase";
 import { Initial } from "../lib/types";
 import Image from 'next/image';
@@ -35,7 +35,7 @@ const BgContainer = () => {
         const docRef = doc(mainCol, 'initial');
 
         const fetchData = async () => {
-            const firestoreData = await getData<Initial>(docRef);
+            const firestoreData = await getData<Initial>(docRef as DocumentReference<Initial>);
             setInitial(firestoreData);
         };
 
