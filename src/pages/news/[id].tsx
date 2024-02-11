@@ -36,7 +36,7 @@ export default function NewsDetailPage({ newsItem }: { newsItem: NewsItem }) {
                 <title>{newsItem.title[locale]}</title>
                 <meta
                     name="description"
-                    content={newsItem.content[locale].substring(0, 100)}
+                    content={`${newsItem.content[locale].substring(0, 100)}...`}
                 />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta property="og:image" content={newsItem.header} />
