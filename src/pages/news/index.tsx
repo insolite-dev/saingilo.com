@@ -17,34 +17,18 @@ import EmptyCard from "@/components/empty_card";
 
 const ITEMS_PER_PAGE = 10;
 
-/*
-    @param {number} page - The page number to fetch
-    @returns {Promise<NewsItem[]>} - An array of news items
-    @description Fetches news items from the database
-*/
 export const fetchNews = async (page: number) => {
-    const newsRef = collection(db, "news");
-    const orderQuery = orderBy("created_at", "desc");
-    let q = query(newsRef, orderQuery, limit(ITEMS_PER_PAGE));
-  
+  const newsRef = collection(db, "news");
+  const orderQuery = orderBy("created_at", "desc");
+  let q = query(newsRef, orderQuery, limit(ITEMS_PER_PAGE));
 
-    if (page > 1) {
-      const lastItem = await (
-        await getDocs(
-          query(
-            newsRef,
-            orderQuery,
-            limit((page - 1) * ITEMS_PER_PAGE)
-          )
-        )
-      ).docs.pop();
-      q = query(
-        newsRef,
-        orderQuery,
-        startAfter(lastItem),
-        limit(ITEMS_PER_PAGE)
-      );
-    }
+  if (page > 1) {
+    const lastItemSnapshot = await getDocs(
+      query(newsRef, orderQuery, limit((page - 1) * ITEMS_PER_PAGE))
+    );
+    const lastItem = lastItemSnapshot.docs[lastItemSnapshot.docs.length - 1];
+    q = query(newsRef, orderQuery, startAfter(lastItem), limit(ITEMS_PER_PAGE));
+  }
 
   const querySnapshot = await getDocs(q);
   const newsItems = querySnapshot.docs.map((doc) => doc.data() as NewsItem);
@@ -102,33 +86,30 @@ const News = () => {
               </Link>
             </div>
           ))
-        ) : (
-          <EmptyCard />
-        )}
+          ) : loading ? null : (
+            <EmptyCard />
+          )}
 
         {loading && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
             <div className="spinner border-4 border-t-4 border-t-white border-gray-300 h-12 w-12 rounded-full animate-spin"></div>
           </div>
         )}
+
         <div className="flex flex-1 justify-between sm:justify-end">
           {page > 1 && (
-            <a
-              href={`/news?page=${page - 1}`}
-              className="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0"
-            >
-              Previous
-            </a>
+            <Link href={`/news?page=${page - 1}`} passHref>
+              <a
+                className="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0"
+              >
+                Previous
+              </a>
+            </Link>
           )}
-          {data && data.length > 0 && (
+          {data && data.length >= ITEMS_PER_PAGE && (
             <button
               onClick={() => router.push(`/news?page=${page + 1}`)}
-              className={`relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0 ${
-                data.length < ITEMS_PER_PAGE
-                  ? "opacity-50 cursor-not-allowed"
-                  : ""
-              }`}
-              disabled={data.length < ITEMS_PER_PAGE}
+              className={`relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0`}
             >
               Next
             </button>
