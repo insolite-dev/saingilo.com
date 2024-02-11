@@ -15,6 +15,7 @@ export interface ContentArray {
 }
 
 export interface NewsItem {
+    id: string;
     title: { [key: string]: string };
     header: string;
     content: { [key: string]: string };

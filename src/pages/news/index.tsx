@@ -4,6 +4,7 @@ import Head from "next/head"
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { DocumentData, QueryDocumentSnapshot, collection, getDocs, limit, orderBy, query, startAfter } from "firebase/firestore";
+import Link from "next/link";
 
 const news = () => {
     const [data, setData] = useState<NewsItem[]>([]);
@@ -41,9 +42,7 @@ const news = () => {
     };
 
 
-    // TODO: make card pressable and news[index] page
     // TODO: make transparent the container bg to black
-    // TODO: make load more a little bit better looking
 
     return (
         <>
@@ -61,13 +60,15 @@ const news = () => {
             <div className="pg bg-black text-white p-5">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {data.map((item, index) => (
-                        <div key={index} className="relative bg-gray-800 rounded-lg shadow-md overflow-hidden">
-                            <img src={item.header} alt="" className="w-full h-auto md:h-60 object-cover" />
-                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                                <h4 className="text-md font-bold mb-2 text-white">{item.title[locale]}</h4>
-                                <p className="text-sm text-white">{item.content[locale].substring(0, 100)}...</p>
+                        <Link href={`/news/${item.id}`} key={item.id}>
+                            <div key={index} className="relative bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                                <img src={item.header} alt="" className="w-full h-auto md:h-60 object-cover" />
+                                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                                    <h4 className="text-md font-bold mb-2 text-white">{item.title[locale]}</h4>
+                                    <p className="text-sm text-white">{item.content[locale].substring(0, 100)}...</p>
+                                </div>
                             </div>
-                        </div>
+                        </Link >
                     ))}
                 </div>
                 {loading && (
@@ -75,7 +76,12 @@ const news = () => {
                         <div className="spinner border-4 border-t-4 border-t-white border-gray-300 h-12 w-12 rounded-full animate-spin"></div>
                     </div>
                 )}
-                {lastVisible && <button onClick={fetchMoreNews} disabled={loading} className="block mx-auto mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors">Load More</button>}
+
+                {/* {lastVisible && (
+                    <button onClick={fetchMoreNews} disabled={loading} className="bottom-0 left-0 right-0 text-center py-2 bg-black text-white hover:text-blue-500 bg-transparent">
+                        Load More
+                    </button>
+                )} */}
             </div>
         </>
     )

@@ -134,6 +134,12 @@
     border-bottom: 5px dotted rgba(0, 0, 0, .1);
 }
 
+.divider-no-border {
+    margin-right: 35%;
+    margin-left: 35%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
 .language-icon {
     color: #fff;
     font-size: 18px;

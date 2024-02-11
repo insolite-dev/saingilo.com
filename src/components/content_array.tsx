@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { doc, collection } from "firebase/firestore";
+import { doc, collection, DocumentReference } from "firebase/firestore";
 import { getData } from '../lib/fetcher';
 import { ContentArray } from '../lib/types';
 import { db } from "../api/firebase";
@@ -14,7 +14,7 @@ export default function ContentArrayComponent() {
         const docRef = doc(mainCol, 'content');
 
         const fetchData = async () => {
-            const firestoreData = await getData<ContentArray>(docRef);
+            const firestoreData = await getData<ContentArray>(docRef as DocumentReference<ContentArray>);
             setData(firestoreData);
         };
 
