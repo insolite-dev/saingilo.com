@@ -28,7 +28,6 @@ export default function Header() {
 
     const navigation: INavigationProps[] = [
         { name: locale.navbar_main, href: `/${router.locale}`, current: true },
-        { name: locale.navbar_contact, href: `/${router.locale}/contact`, current: false },
         { name: locale.navbar_news, href: `/${router.locale}/news`, current: false },
     ]
 
