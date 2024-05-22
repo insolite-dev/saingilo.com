@@ -29,7 +29,7 @@ export const fetchNews = async (page: number) => {
 
   if (page > 1) {
     const lastItemSnapshot = await getDocs(
-      query(newsRef, orderQuery, limit((page - 1) * ITEMS_PER_PAGE))
+      query(newsRef, orderQuery, limit((page - 1) * ITEMS_PER_PAGE)),
     );
     const lastItem = lastItemSnapshot.docs[lastItemSnapshot.docs.length - 1];
     q = query(newsRef, orderQuery, startAfter(lastItem), limit(ITEMS_PER_PAGE));
@@ -44,7 +44,7 @@ const News = () => {
   const router = useRouter();
   const page = Number(router.query.page) || 1;
   const { data, error } = useSWR<NewsItem[]>(`news/${page}`, () =>
-    fetchNews(page)
+    fetchNews(page),
   );
   const loading = !data && !error;
   const locale = router.locale || "ka";
@@ -62,13 +62,17 @@ const News = () => {
         <link rel="icon" href="/logovazi.svg" />
       </Head>
 
-      <div className="pg bg-black text-white p-5">
-        {data && data.length > 0 ? (
+      {data && data.length === 0 && (
+        <div className="pg bg-black p-5">
+          <EmptyCard />
+        </div>
+      )}
+
+      <div className="pg bg-black text-white p-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+        {data &&
+          data.length > 0 &&
           data.map((item, index) => (
-            <div
-              className="grid grid-cols-1 md:grid-cols-3 gap-4"
-              key={item.id}
-            >
+            <div className="col-span-1" key={item.id}>
               <Link href={`/news/${item.id}`}>
                 <div
                   key={index}
@@ -90,10 +94,7 @@ const News = () => {
                 </div>
               </Link>
             </div>
-          ))
-          ) : loading ? null : (
-            <EmptyCard />
-          )}
+          ))}
 
         {loading && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
@@ -104,9 +105,7 @@ const News = () => {
         <div className="flex flex-1 justify-between sm:justify-end">
           {page > 1 && (
             <Link href={`/news?page=${page - 1}`} passHref>
-              <a
-                className="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0"
-              >
+              <a className="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:outline-offset-0">
                 Previous
               </a>
             </Link>
