@@ -68,11 +68,11 @@ const News = () => {
         </div>
       )}
 
-      <div className="pg bg-black text-white p-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="pg bg-black text-white p-5 grid grid-cols-1 md:grid-cols-3 gap-4 h-auto">
         {data &&
           data.length > 0 &&
           data.map((item, index) => (
-            <div className="col-span-1" key={item.id}>
+            <div className="col-span-1 h-[40px]" key={item.id}>
               <Link href={`/news/${item.id}`}>
                 <div
                   key={index}
